@@ -187,7 +187,7 @@ void RecvCMD_SAVE_WARNO(t_packet *p, t_connection c[], int cn )
 	char	query_stmt[80]={0,};
 
 	SQLAllocStmt(hDBC,&hStmt);
-	wsprintf(query_stmt,"update WarStartUpTBL set DayofWeek=%d where Type=-1",p->u.NationWar.CommonDataDw);
+	wsprintf(query_stmt,"update WarStartUpTBL set DayofWeek=%s where Type=-1",p->u.NationWar.CommonDataDw);
 
 	ret = SQLExecDirect(hStmt,(UCHAR*)query_stmt,SQL_NTS);
 	if (ret!=SQL_SUCCESS_WITH_INFO && ret !=SQL_SUCCESS)

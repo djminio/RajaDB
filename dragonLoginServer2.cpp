@@ -2793,18 +2793,18 @@ int isPosableGuildJoinById( int guild_code, char *id )
 int isInAGuildById( char *id ) //Eleval 13/06/09, to check if the player is guildless
 {
 	int is_possible = 1;
-	char name[4][20];
-	memset(name, 0, sizeof(char)*4*20);
+	char name[4][20];//can store for words of length 20.
+	memset(name, 0, sizeof(char)*4*20);//sets the player name and checks the size and length of the valid detail
 
 	if (GetCharacterNameInID(id, name) == 1)
 	{
-		for( int i=0; i<4 ; i++ )
+		for( int i=0; i<4 ; i++ )// a loop this checks if the word is less then 4 if so increment i by one.
 		{
-			if (name[i][0])
+			if (name[i][0])//if condtion is not  not in a guild will set guild code to 0 which is guildless.
 			{
-				int nGuildCode = 0;
+				int nGuildCode = 0;//sets guild code to 0 if conditions matches
 
-				if (GetGuildCode(name[i], nGuildCode))
+				if (GetGuildCode(name[i], nGuildCode))//another condition to check if player is in a guild then break;
 				{
 				
 					if (nGuildCode != 0)
@@ -2819,13 +2819,18 @@ int isInAGuildById( char *id ) //Eleval 13/06/09, to check if the player is guil
 	return 1;
 }
 
-int isPosableGuildJoinByName( int guild_code, char *name )
+int isPosableGuildJoinByName( int guild_code, char *name )// each guild has a guild code when they first gets created char *name points to a pointer to the first character in the list.
 {
+
+	//Varriable
 	char id[20];
-	int ret = GetLoginIdByName( name, id );
+	///////////
+
+
+	int ret = GetLoginIdByName( name, id );//Character Name , Account ID.
 	if( ret != 1 ) return -1;
 	
-	return isPosableGuildJoinById( guild_code, id );
+	return isPosableGuildJoinById( guild_code, id );//guild code number , account name, all characters on the account need to leave a guild in order to join another guild.
 }
 
 void RecvRegistGuild_DB( t_packet *p, short int cn )

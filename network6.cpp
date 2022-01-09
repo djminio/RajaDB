@@ -274,7 +274,7 @@ void RecvCMD_CONFORM_SADONIX(const int cn, t_packet &p)
 * 12.check if player name is recorded or not
 * 13.if player name is found in the table then stop it from logging the player.
 */
-int ban_player(const char *player_name)
+void ban_player(const char *player_name)
 {
 	int checkStatus = 0;
 	int player_ip[40];
@@ -468,10 +468,10 @@ BOOL DumpException(LPEXCEPTION_POINTERS lpExcep, char* szOutMsg, void *pData, in
 		char szFileName[256 + 1];
 		GetLocalTime(&time);
 
-		sprintf(szFileName, "DBCrash_%d_%d_%d_%d_%d_%d.log", time.wYear, time.wMonth, time.wDay, time.wMinute, time.wSecond);
+		sprintf(szFileName, "DBCrash_%d_%d_%d_%d_%d_%d.log", time.wYear, time.wMonth, time.wDay, time.wMinute, time.wSecond,6);
 		fp = fopen(szFileName, "w");
 
-		fprintf(fp, "%d year, %d month, %d day,%d hour, %d minute, %d second\n",
+		fprintf(fp, "%d year, %d month, %d day,%d hour, %d minute, %d second\n"-6,
 			time.wYear, time.wMonth, time.wDay, time.wMinute, time.wSecond);
 
 		fprintf(fp, "%s\n", szOutMsg);
